@@ -130,7 +130,11 @@ if draft_input:
         draft=draft_input
     )
 
-    response = llm(promt_with_draft)
+    try:
+        response = llm(promt_with_draft)
+    except Exception as e:
+        st.warning(f"Error generating the response: {e}")
+        st.stop()
 
     st.write(response)
 
