@@ -90,7 +90,7 @@ openai_api_key = get_openai_api_key()
 st.markdown("### Enter the Draft Text")
 
 def get_draft_text():
-    input_text  = st.text_area("Enter the Draft Text", placeholder="Ex: sk-2twmA8tfCb8un4...", height=200, max_chars=700, key="draft_text", help="Enter the draft text here")
+    input_text  = st.text_area(label="Text", label_visibility='collapsed', placeholder="Your Text...", key="draft_input")
 
     return input_text
 
