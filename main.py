@@ -80,7 +80,7 @@ with col2:
 st.markdown("### Enter your OpenAI API Key")
 
 def get_openai_api_key():
-    input_text  = st.text_input("Enter your OpenAI API Key", type="password",placeholder="Enter your OpenAI API Key")
+    input_text  = st.text_input("Enter your OpenAI API Key", type="password",placeholder="Enter your OpenAI API Key", key="openai_api_key", help="Enter your OpenAI API Key here")
     return input_text
 
 openai_api_key = get_openai_api_key()
@@ -90,7 +90,7 @@ openai_api_key = get_openai_api_key()
 st.markdown("### Enter the Draft Text")
 
 def get_draft_text():
-    input_text  = st.text_area("Enter the Draft Text", placeholder="Enter the draft text here", height=200, max_chars=700, key="draft_text", help="Enter the draft text here")
+    input_text  = st.text_area("Enter the Draft Text", placeholder="Ex: sk-2twmA8tfCb8un4...", height=200, max_chars=700, key="draft_text", help="Enter the draft text here")
 
     return input_text
 
@@ -114,8 +114,10 @@ st.markdown("### Redacted Text")
 
 if draft_input:
     if not openai_api_key:
-        st.warning("Please enter your OpenAI API Key", icon="warning")
+        st.warning("Please enter your OpenAI API Key \
+                   Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key) ",icon="⚠️")
         st.stop()
+        
     llm = load_LLM(openai_api_key)
 
     promt_with_draft = prompt.format(
