@@ -117,8 +117,12 @@ if draft_input:
         st.warning("Please enter your OpenAI API Key \
                    Instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key) ",icon="⚠️")
         st.stop()
-        
-    llm = load_LLM(openai_api_key)
+
+    try:   
+        llm = load_LLM(openai_api_key)
+    except Exception as e:
+        st.error(f"Error loading the language model: {e}")
+        st.stop()
 
     promt_with_draft = prompt.format(
         tone=option_tone,
