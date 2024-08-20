@@ -121,7 +121,7 @@ if draft_input:
     try:   
         llm = load_LLM(openai_api_key)
     except Exception as e:
-        st.error(f"Error loading the language model: {e}")
+        st.warning(f"Error loading the language model: {e}")
         st.stop()
 
     promt_with_draft = prompt.format(
